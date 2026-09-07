@@ -1,0 +1,17 @@
+# secrets & local env
+.env
+.env.*
+
+# python
+__pycache__/
+*.pyc
+dist/
+build/
+*.egg-info/
+.venv/
+
+# pending proposals are review scratch; their durable form is the branch that carries them
+*.codebook.pending.json
+*.codebook.pending.md
+
+.DS_Store

@@ -1,0 +1,54 @@
+[project]
+name = "teca-label"
+dynamic = ["version"]
+description = "Stable semantic events for your agent's traces: versioned codebooks, labels in your own Postgres, changes by diff."
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Alexander Reznik" }]
+requires-python = ">=3.10"
+dependencies = ["anthropic>=0.89", "pydantic>=2",
+                'tomli>=2; python_version < "3.11"']  # teca-label.toml on 3.10; stdlib tomllib after
+keywords = ["llm", "classification", "codebook", "unstructured-data", "taxonomy", "analytics"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Typing :: Typed",
+]
+
+[project.urls]
+Homepage = "https://github.com/areznik23/teca-label"
+Repository = "https://github.com/areznik23/teca-label"
+Issues = "https://github.com/areznik23/teca-label/issues"
+Changelog = "https://github.com/areznik23/teca-label/blob/main/CHANGELOG.md"
+
+[project.scripts]
+teca-label = "teca_label.cli:main"
+
+[project.optional-dependencies]
+postgres = ["psycopg2-binary"]
+openai = ["openai>=1.60"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.version]
+path = "teca_label/_version.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["teca_label"]
+
+[tool.hatch.build.targets.sdist]
+include = ["teca_label/", "tests/", "README.md", "LICENSE", "FORMAT.md", "CHANGELOG.md", "pyproject.toml"]
+exclude = [".gitignore"]
